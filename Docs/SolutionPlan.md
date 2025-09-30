@@ -8,11 +8,11 @@
 ## Team Members  
 | Name | GitHub Handle | Role(s) |
 |-------|---------------|---------|
-| Jorge Cruz |[mjorgecruz](https://github.com/mjorgecruz) |          |
-| Luis Filipe Carvalho | [luis-ffe](https://github.com/luis-ffe) |         |
-| Melanie Reis | [melaniereis](https://github.com/melaniereis) |         |
-| Rui Pires | [Rui-Pedro-Pires](https://github.com/Rui-Pedro-Pires) |         |
-| Teresa Chow | [teresa-chow](https://github.com/teresa-chow) |         |
+| Jorge Cruz |[mjorgecruz](https://github.com/mjorgecruz) | Ankaios Agent, Ankaios Provider, Ankaios Server configuration |
+| Luis Filipe Carvalho | [luis-ffe](https://github.com/luis-ffe) | Driver profile service, policy engine, update-campaign logic |
+| Melanie Reis | [melaniereis](https://github.com/melaniereis) | Update-request application, policy script authoring, UI/UX |
+| Rui Pires | [Rui-Pedro-Pires](https://github.com/Rui-Pedro-Pires) | Symphony API deployment, Symphony Agent integration, MQTT broker setup |
+| Teresa Chow | [teresa-chow](https://github.com/teresa-chow) | Overall coordination, demo orchestration, presentation design, visual dashboard |
 
 ## Challenge  
 *Which challenge have you decided to compete for?*: 
