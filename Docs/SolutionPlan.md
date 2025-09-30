@@ -29,7 +29,7 @@ Besides that every driver is unique, but vehicles come with generic "one-size-fi
 
 **Our Innovation**: Is the possibility to continuously optimizes vehicle behavior through intelligent, regulation-compliant OTA updates. Your car becomes truly *yours*.
 
-![System Architecture Diagram (ongoing)](Docs/Diagrams/Solution.png)
+![System Architecture Diagram (ongoing)](Diagrams/Solution.png)
 
 ---
 
