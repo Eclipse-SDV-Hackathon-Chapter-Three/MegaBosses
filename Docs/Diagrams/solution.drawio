@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36" version="28.2.1">
+  <diagram name="Page-1" id="XHcTOSudbnqIM4DRVX-b">
+    <mxGraphModel dx="1048" dy="1006" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="GLrmVArSBU0PkHQPGu4o-1" target="GLrmVArSBU0PkHQPGu4o-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-1" value="Management Platform&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Fleet version control&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="70" width="220" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="GLrmVArSBU0PkHQPGu4o-4" target="GLrmVArSBU0PkHQPGu4o-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-4" value="symphony api campain request" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="GLrmVArSBU0PkHQPGu4o-5" target="GLrmVArSBU0PkHQPGu4o-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-5" value="symphony api" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="GLrmVArSBU0PkHQPGu4o-6" target="GLrmVArSBU0PkHQPGu4o-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-6" value="mqtt broker" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-7" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="580" width="120" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-8" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="40" y="530" as="sourcePoint" />
+            <mxPoint x="780" y="530" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="390" y="530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-9" value="Cloud" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="70" y="490" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-10" value="Vehicle" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="70" y="535" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-11" value="symphony agent" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="350" y="610" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-12" value="ankios provider" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="325" y="670" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-13" value="ankios agent&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;SDV Workloads&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="210" y="670" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-14" value="ankios agent&lt;div&gt;&lt;br&gt;Policy Workflow&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="210" y="580" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-15" value="ankios server" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="580" width="80" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-16" value="Policy Workflow" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="580" width="80" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="GLrmVArSBU0PkHQPGu4o-17" value="SDV Workloads" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="580" width="80" height="170" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
