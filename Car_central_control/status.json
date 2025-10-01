@@ -1,0 +1,47 @@
+{
+  "timestamp": "2025-10-01T14:30:00Z",
+  "vehicle_id": "MEGABOSS_001",
+  "overall_status": "operational",
+  "vehicle_state": {
+    "engine_status": "stopped",
+    "ignition": false,
+    "gear": "park",
+    "speed_kmh": 0,
+    "location": {
+      "latitude": 52.520008,
+      "longitude": 13.404954,
+      "altitude": 34.5
+    },
+    "doors": {
+      "driver": "closed",
+      "passenger": "closed",
+      "rear_left": "closed",
+      "rear_right": "closed"
+    }
+  },
+  "battery_status": {
+    "charge_level_percent": 85,
+    "charging": true
+  },
+  "applications_health": {
+    "fuel_pump_service": {
+      "status": "healthy",
+      "last_check": "2025-10-01T14:29:45Z",
+      "url": "http://localhost:8000/health"
+    },
+    "ankaios_system": {
+      "status": "healthy",
+      "last_check": "2025-10-01T14:29:50Z",
+      "active_workloads": 8,
+      "failed_workloads": 0
+    },
+    "navigation_system": {
+      "status": "healthy",
+      "last_check": "2025-10-01T14:29:40Z"
+    },
+    "communication_module": {
+      "status": "healthy",
+      "last_check": "2025-10-01T14:29:35Z"
+    }
+  }
+}
