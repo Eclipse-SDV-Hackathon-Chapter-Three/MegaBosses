@@ -12,6 +12,7 @@ curl -X POST \
 =======
   --data @./symphony/campaigns/update.json \
 >>>>>>> origin/feature/create-campaign
+  --data @./symphony/campaigns/update.json \
   http://localhost:8082/v1alpha2/campaigns/update-v-v1
 
 curl -X GET \
