@@ -42,10 +42,6 @@
                             "properties": {
                                 "ankaios.runtime": "podman",
                                 "ankaios.agent": "agent_A",
-                                "ankaios.tags": {
-                                    "ankaios.key": "version",
-                                    "ankaios.value": "v0.0.1"
-                                },
                                 "ankaios.restartPolicy": "ALWAYS",
                                 "ankaios.runtimeConfig": "image: localhost/emergency-brake:0.0.1"                   
                             }
@@ -84,10 +80,6 @@
                             "properties": {
                                 "ankaios.runtime": "podman",
                                 "ankaios.agent": "agent_A",
-                                "ankaios.tags": {
-                                    "ankaios.key": "version",
-                                    "ankaios.value": "v0.0.2"
-                                },
                                 "ankaios.restartPolicy": "ALWAYS",
                                 "ankaios.runtimeConfig": "image: localhost/emergency-brake:0.0.2"                   
                             }
