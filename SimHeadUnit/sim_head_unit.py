@@ -236,7 +236,7 @@ def confirm_status():
 def confirm(decision: dict = Body(...)):
     d = decision.get("decision")
     if d not in ("accept", "reject"):
-        raise HTTPException(status_code=400, detail="Invalid decision")
+        400
     with CONFIRM_LOCK:
         if not CONFIRM_STATE["pending"]:
             return {"status": "no_pending"}

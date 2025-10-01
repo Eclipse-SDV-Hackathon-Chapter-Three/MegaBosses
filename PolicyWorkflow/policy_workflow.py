@@ -10,7 +10,6 @@ STATUS_FILE = os.path.join(os.path.dirname(__file__), "status.json")
 
 @app.post("/health-check")
 def health_check(body: dict = Body(..., description="Target to make a health check")):
-    target = body.get("target")
     return 200
 
 def _deep_match(expected: Any, actual: Any, path: str = "") -> List[str]:
@@ -43,16 +42,16 @@ def update_possible(body: dict = Body(..., description="Subset of required statu
     expected = body.get("conditions")
 
     if not os.path.exists(STATUS_FILE):
-        raise HTTPException(status_code=500, detail="Status file not found")
+        return 500
     try:
         with open(STATUS_FILE, "r") as f:
             actual = json.load(f)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to read status file: {e}")
+        return 500
 
     errors = _deep_match(expected, actual)
     if errors:
-        raise HTTPException(status_code=400, detail={"match": False, "errors": errors})
+        return 500
     
     popup_res = requests.get(
       "http://localhost:8086/pop-up"    
@@ -86,4 +85,4 @@ def update(body: dict = Body(..., description="Target to be published to the sym
 
         return 200
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        return 500
