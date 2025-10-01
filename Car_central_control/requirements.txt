@@ -1,0 +1,5 @@
+# sudo apt install python3-pip
+fastapi==0.115.5
+uvicorn==0.32.0
+ankaios_sdk
+requests

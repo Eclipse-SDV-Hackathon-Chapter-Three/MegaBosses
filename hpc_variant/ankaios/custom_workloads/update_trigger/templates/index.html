@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ankaios Trigger</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <button id="triggerBtn">Trigger Update</button>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const toast = document.getElementById("toast");
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.className = "toast show";
+      setTimeout(() => { toast.className = "toast"; }, 3000);
+    }
+
+    document.getElementById("triggerBtn").addEventListener("click", () => {
+      const ws = new WebSocket(`ws://${window.location.host}/ws/trigger-update`);
+
+      ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        console.log("Received:", data);
+
+        if (data.status === "TRIGGERED") {
+          showToast("Update triggered...");
+        } else if (data.status === "RUNNING") {
+          showToast("Update triggered successfully");
+          ws.close();
+        } else if (data.status === "TIMEOUT") {
+          showToast("Workload did not reach RUNNING in time");
+          ws.close();
+        } else if (data.status === "ERROR") {
+          showToast("Error: " + data.message);
+          ws.close();
+        }
+      };
+
+        ws.onerror = (event) => {
+            console.error("WebSocket error:", event);
+            showToast("WebSocket error (see console for details)");
+        };
+    });
+  </script>
+</body>
+</html>
