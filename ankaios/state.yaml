@@ -48,6 +48,9 @@ workloads:
   Ankaios_Dashboard:
     runtime: podman
     agent: agent_A
+    tags:
+      - key: version
+        value: v0.6.0
     restartPolicy: NEVER
     runtimeConfig: |
        image: ghcr.io/eclipse-ankaios-dashboard/ankaios-dashboard:v0.6.0
