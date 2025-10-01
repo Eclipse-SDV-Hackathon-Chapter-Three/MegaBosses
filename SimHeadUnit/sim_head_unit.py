@@ -220,6 +220,7 @@ def pop_up():
         # accept
         CONFIRM_STATE["pending"] = False
         return {
+            "status_code": "200",
             "status": "accept"
         }
 

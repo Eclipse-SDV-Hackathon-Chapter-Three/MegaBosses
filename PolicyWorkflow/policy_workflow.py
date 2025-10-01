@@ -65,7 +65,11 @@ def update_possible(body: dict = Body(..., description="Subset of required statu
 
     popup_res.raise_for_status()
 
-    return popup_res.json()
+    return {
+        "status_code": popup_res.status_code,
+        "ok": popup_res.ok
+    }
+
 
     
 
