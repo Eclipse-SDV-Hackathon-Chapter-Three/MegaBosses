@@ -21,6 +21,15 @@ spec:
         user: admin
         password: ""
       stageSelector: update
+    update-trigger:
+      name: update-trigger
+      provider: providers.stage.http
+      config:
+        name: trigger
+        url: http://localhost:8085/check-update
+        method: "POST"
+        successCodes: [ 200, 202 ]
+      stageSelector: ${{$if($eq($output(update-trigger, statusCode), 200), update, end)}}
     update:
       name: update
       provider: providers.stage.http
