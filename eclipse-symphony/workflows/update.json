@@ -4,19 +4,9 @@
   },
   "spec": {
     "rootResource": "update",
-    "firstStage": "register",
+    "firstStage": "update",
     "selfDriving": true,
     "stages": {
-      "register": {
-        "name": "register",
-        "provider": "providers.stage.materialize",
-        "config": {
-          "baseUrl": "http://localhost:8082/v1alpha2/",
-          "user": "admin",
-          "password": ""
-        },
-        "stageSelector": "update"
-      },
       "update-trigger": {
         "name": "update-trigger",
         "provider": "providers.stage.http",
