@@ -28,6 +28,9 @@
           "name": "test",
           "url": "http://localhost:8082/targets/registry/ankaios-target",
           "method": "POST",
+          "headers": {
+            "Authorization": "Bearer ${{$trigger(token, \"\")}}"
+          },
           "successCodes": [
             200,
             202
