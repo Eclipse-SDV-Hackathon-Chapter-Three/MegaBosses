@@ -219,7 +219,7 @@ def pop_up():
             return 200
         # accept
         CONFIRM_STATE["pending"] = False
-        return { "body" : 200 }
+        return 200
   
 @app.get("/health-check")
 def health_check():
