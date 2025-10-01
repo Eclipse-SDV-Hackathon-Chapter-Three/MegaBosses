@@ -10,7 +10,7 @@ workloads:
           filterMask:
             - "*"
     runtimeConfig: |
-      image: policy-workflow:latest
+      image: localhost/policy-workflow:latest
       commandOptions: ["-p","5500:5500"]
 
   symphony:
