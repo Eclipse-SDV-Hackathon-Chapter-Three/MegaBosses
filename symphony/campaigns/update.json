@@ -4,7 +4,7 @@
   },
   "spec": {
     "rootResource": "update",
-    "firstStage": "check-update",
+    "firstStage": "update",
     "selfDriving": true,
     "stages": {
       "check-update": {
