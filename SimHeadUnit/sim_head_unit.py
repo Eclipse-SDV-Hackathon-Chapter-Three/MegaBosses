@@ -214,12 +214,12 @@ def pop_up():
         if not waited or CONFIRM_STATE["result"] is None:
             # Timeout / no decision
             CONFIRM_STATE["pending"] = False
-            return 408
+            return 200
         if CONFIRM_STATE["result"] == "reject":
-            return 400
+            return 200
         # accept
         CONFIRM_STATE["pending"] = False
-        return 200
+        return { "body" : 200 }
   
 @app.get("/health-check")
 def health_check():
