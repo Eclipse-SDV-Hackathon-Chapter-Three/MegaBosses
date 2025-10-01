@@ -209,7 +209,7 @@ window.onload = () => {
 """
 
 
-@app.get("/health")
+@app.get("/health-check")
 def health_check():
     return 200
 

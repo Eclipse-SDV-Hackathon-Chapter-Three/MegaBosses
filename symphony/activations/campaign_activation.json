@@ -7,9 +7,28 @@
         "stage": "",
         "inputs": {
             "app-to-update": "main-app",
-            "conditions": [
-                "power off"
-            ],
+            "conditions": {
+                "vehicle_state": {
+                    "engine_status": "stopped",
+                    "gear": "park",
+                    "speed_kmh": 0,
+                    "location": {
+                    "latitude": 52.520008,
+                    "longitude": 13.404954,
+                    "altitude": 34.5,
+                    "country" : "Portugal"
+                    },
+                    "doors": {
+                    "driver": "closed",
+                    "passenger": "closed",
+                    "rear_left": "closed",
+                    "rear_right": "closed"
+                    }
+                },
+                "battery_status": {
+                    "charging": true
+                }
+            },
             "rollback": {
                 "metadata": {
                     "name": "ankaios-target"
