@@ -104,7 +104,7 @@ def update(body: dict = Body(..., description="Subset of required status fields"
             }
         }
 
-        SYMPHONY_API_URL = "http://localhost:8082/v1alpha2/"
+        SYMPHONY_API_URL = "http://10.0.0.4:8082/v1alpha2/"
         auth_resp = requests.post(
             f"{SYMPHONY_API_URL}users/auth",
             headers={"Content-Type": "application/json"},
