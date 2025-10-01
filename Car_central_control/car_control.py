@@ -124,6 +124,6 @@ def update(body: dict = Body(..., description="Subset of required status fields"
     target_res.raise_for_status()
 
     return {
-    "status_code": target_res.status_code,
-    "ok": target_res.ok
-}
+        "status_code": target_res.status_code,
+        "ok": target_res.ok
+    }
