@@ -65,44 +65,7 @@ def update_possible(expected: dict = Body(..., description="Subset of required s
 @app.post("/update")
 def update(body: dict = Body(..., description="Subset of required status fields")):
     try:
-        target = {
-            "metadata": {
-                "name": "ankaios-target"
-            },
-            "spec": {
-                "forceRedeploy": True,
-                "components": [
-                    {
-                        "name": "ankaios-app",   
-                        "type": "ankaios",             
-                        "properties": {
-                            "ankaios.runtime": "podman",
-                            "ankaios.agent": "agent_A",
-                            "ankaios.restartPolicy": "ALWAYS",
-                            "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"9090:80\"]"                   
-                        }
-                    }
-                ],
-                "topologies": [
-                    {
-                        "bindings": [
-                            {
-                                "role": "ankaios",
-                                "provider": "providers.target.mqtt",
-                                "config": {
-                                    "name": "proxy",
-                                    "brokerAddress": "tcp://127.0.0.1:1883",
-                                    "clientID": "symphony",
-                                    "requestTopic": "coa-request",
-                                    "responseTopic": "coa-response",
-                                    "timeoutSeconds":  "30"
-                                }
-                            }
-                        ]
-                    }
-                ]
-            }
-        }
+        target = body.get("target")
 
         SYMPHONY_API_URL = "http://localhost:8082/v1alpha2/"
         auth_resp = requests.post(
