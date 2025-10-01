@@ -46,6 +46,7 @@ def _deep_match(expected: Any, actual: Any, path: str = "") -> List[str]:
 @app.post("/check-update")
 def update_possible(body: dict = Body(..., description="Subset of required status fields")):
     expected = body.get("conditions")
+    status = body.get("status")
 
     if not os.path.exists(STATUS_FILE):
         raise HTTPException(status_code=500, detail="Status file not found")
@@ -64,6 +65,8 @@ def update_possible(body: dict = Body(..., description="Subset of required statu
     )
 
     popup_res.raise_for_status()
+
+    status = 200
 
     return 200
 
