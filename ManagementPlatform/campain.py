@@ -1,7 +1,7 @@
 import requests
 import json
 
-symphony_base_url = "http://localhost:8080/v1alpha2"
+symphony_base_url = "http://localhost:8082/v1alpha2"
 
 def truck_detected():
     auth_response = requests.post(
