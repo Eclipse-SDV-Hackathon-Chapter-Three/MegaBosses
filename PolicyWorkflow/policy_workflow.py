@@ -1,12 +1,6 @@
 from fastapi import FastAPI, HTTPException, Body
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
 import json
 import os
-import time
-import threading
-from datetime import datetime, timezone
 import requests
 from typing import Any, List
 
@@ -48,22 +42,21 @@ def update_possible(body: dict = Body(..., description="Subset of required statu
     expected = body.get("conditions")
 
     if not os.path.exists(STATUS_FILE):
-        raise HTTPException(status_code=500, detail="Status file not found")
+        return 500
     try:
         with open(STATUS_FILE, "r") as f:
             actual = json.load(f)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to read status file: {e}")
+        return 500
 
     errors = _deep_match(expected, actual)
     if errors:
-        raise HTTPException(status_code=400, detail={"match": False, "errors": errors})
+        return 500
     
     popup_res = requests.get(
       "http://localhost:8086/pop-up"    
     )
 
-    # return popup_res
     return 200
     
 @app.post("/update")
@@ -92,4 +85,4 @@ def update(body: dict = Body(..., description="Target to be published to the sym
 
         return 200
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        return 500
