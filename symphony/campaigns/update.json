@@ -3,7 +3,7 @@
     "name": "update-v-v1"
   },
   "spec": {
-    "rootResource": "update-campaign",
+    "rootResource": "update",
     "firstStage": "check-update",
     "selfDriving": true,
     "stages": {
