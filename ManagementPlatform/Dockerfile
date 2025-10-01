@@ -10,7 +10,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN if [ -f package-lock.json ]; then npm ci; else echo "No lock file, using npm install"; npm install; fi
 
 # Copy source code
 COPY . .
@@ -28,11 +28,11 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Expose port 80
-EXPOSE 80
+EXPOSE 9000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-	CMD wget --quiet --tries=1 --spider http://localhost:80 || exit 1
+	CMD wget --quiet --tries=1 --spider http://localhost:9000 || exit 1
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
