@@ -24,7 +24,7 @@
             "conditions": "${{$trigger(conditions, {})}}"
           }
         },
-        "stageSelector": "${{$if($equal($output(check-update, statusCode), 200), update, '')}}"
+        "stageSelector": "${{$if($equal($output(check-update, body), 200), update, '')}}"
       },
       "update": {
         "name": "update",
