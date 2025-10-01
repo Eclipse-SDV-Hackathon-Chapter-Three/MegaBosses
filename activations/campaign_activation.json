@@ -31,7 +31,7 @@
                                 "ankaios.runtime": "podman",
                                 "ankaios.agent": "agent_A",
                                 "ankaios.restartPolicy": "ALWAYS",
-                                "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"8080:80\"]"                
+                                "ankaios.runtimeConfig": "image: docker.io/ruipires99/emergency-brake:v0.0.1\ncommandOptions: [\"-p\", \"8000:8000\"]"                
                             }
                         }
                     ],
@@ -69,7 +69,7 @@
                                 "ankaios.runtime": "podman",
                                 "ankaios.agent": "agent_A",
                                 "ankaios.restartPolicy": "ALWAYS",
-                                "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"9090:80\"]"                   
+                                "ankaios.runtimeConfig": "image: docker.io/ruipires99/emergency-brake:v0.0.2\ncommandOptions: [\"-p\", \"8000:8000\"]"                   
                             }
                         }
                     ],
