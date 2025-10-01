@@ -3,6 +3,9 @@ workloads:
   policy-workflow:
     runtime: podman
     agent: agent_A
+    tags:
+      - key: version
+        value: v0.0.1
     controlInterfaceAccess:
       allowRules:
         - type: StateRule
@@ -15,6 +18,9 @@ workloads:
   emergency-brake:
     runtime: podman
     agent: agent_A
+    tags:
+      - key: version
+        value: v0.0.1
     controlInterfaceAccess:
       allowRules:
         - type: StateRule
@@ -27,6 +33,9 @@ workloads:
   sim-head-unit:
     runtime: podman
     agent: agent_A
+    tags:
+      - key: version
+        value: v0.0.1
     controlInterfaceAccess:
       allowRules:
         - type: StateRule
@@ -39,7 +48,7 @@ workloads:
   Ankaios_Dashboard:
     runtime: podman
     agent: agent_A
-    restartPolicy: NEVER 
+    restartPolicy: NEVER
     runtimeConfig: |
        image: ghcr.io/eclipse-ankaios-dashboard/ankaios-dashboard:v0.6.0
        commandOptions: ["-p", "5001:5001"]
@@ -54,8 +63,8 @@ workloads:
     agent: agent_A 
     restartPolicy: NEVER    
     tags:
-      - key: owner
-        value: Symphony
+      - key: version
+        value: 0.48-proxy.41
     configs:
       symphony_config: symphony_config
     controlInterfaceAccess:
