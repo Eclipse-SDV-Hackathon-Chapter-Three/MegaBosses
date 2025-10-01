@@ -75,7 +75,7 @@
                     "forceRedeploy": true,
                     "components": [
                         {
-                            "name": "ankaios-app",   
+                            "name": "emergency-brake",   
                             "type": "ankaios",             
                             "properties": {
                                 "ankaios.runtime": "podman",
