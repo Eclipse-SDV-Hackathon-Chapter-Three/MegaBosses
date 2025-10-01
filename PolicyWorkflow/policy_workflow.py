@@ -1,12 +1,6 @@
 from fastapi import FastAPI, HTTPException, Body
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
 import json
 import os
-import time
-import threading
-from datetime import datetime, timezone
 import requests
 from typing import Any, List
 
@@ -16,6 +10,7 @@ STATUS_FILE = os.path.join(os.path.dirname(__file__), "status.json")
 
 @app.post("/health-check")
 def health_check(body: dict = Body(..., description="Target to make a health check")):
+    target = body.get("target")
     return 200
 
 def _deep_match(expected: Any, actual: Any, path: str = "") -> List[str]:
@@ -63,7 +58,7 @@ def update_possible(body: dict = Body(..., description="Subset of required statu
       "http://localhost:8086/pop-up"    
     )
 
-    return popup_res
+    return 200
     
 @app.post("/update")
 def update(body: dict = Body(..., description="Target to be published to the symphony api")):
