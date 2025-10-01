@@ -57,7 +57,10 @@ def update_possible(body: dict = Body(..., description="Subset of required statu
       "http://localhost:8086/pop-up"    
     )
 
-    return popup_res
+    if popup_res.status_code == 200:
+      return 200
+    else:
+      return 400
     
 @app.post("/update")
 def update(body: dict = Body(..., description="Target to be published to the symphony api")):
