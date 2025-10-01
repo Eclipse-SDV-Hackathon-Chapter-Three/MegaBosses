@@ -42,12 +42,6 @@
                             "properties": {
                                 "ankaios.runtime": "podman",
                                 "ankaios.agent": "agent_A",
-                                "ankaios.tags": [
-                                    {
-                                        "ankaios.key": "version",
-                                        "ankaios.value": "v0.0.1"
-                                    }
-                                ],
                                 "ankaios.restartPolicy": "ALWAYS",
                                 "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"8080:80\"]"                
                             }
@@ -86,12 +80,6 @@
                             "properties": {
                                 "ankaios.runtime": "podman",
                                 "ankaios.agent": "agent_A",
-                                "ankaios.tags": [
-                                    {
-                                        "ankaios.key": "version",
-                                        "ankaios.value": "v0.0.2"
-                                    }
-                                ],
                                 "ankaios.restartPolicy": "ALWAYS",
                                 "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"9090:80\"]"                   
                             }
