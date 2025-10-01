@@ -1,0 +1,54 @@
+{
+  "apiVersion": "workflow.symphony/v1",
+  "kind": "Campaign",
+  "metadata": {
+    "name": "update-v-v1"
+  },
+  "spec": {
+    "rootResource": "update",
+    "firstStage": "register",
+    "selfDriving": true,
+    "stages": {
+      "register": {
+        "name": "register",
+        "provider": "providers.stage.materialize",
+        "config": {
+          "baseUrl": "http://localhost:8082/v1alpha2/",
+          "user": "admin",
+          "password": ""
+        },
+        "stageSelector": "update"
+      },
+      "update-trigger": {
+        "name": "update-trigger",
+        "provider": "providers.stage.http",
+        "config": {
+          "name": "trigger",
+          "url": "http://localhost:8085/check-update",
+          "method": "POST",
+          "successCodes": [
+            200,
+            202
+          ]
+        },
+        "stageSelector": "${{$if($eq($output(update-trigger, statusCode), 200), update, end)}}"
+      },
+      "update": {
+        "name": "update",
+        "provider": "providers.stage.http",
+        "config": {
+          "name": "test",
+          "url": "http://localhost:8082/targets/registry/ankaios-target",
+          "method": "POST",
+          "successCodes": [
+            200,
+            202
+          ]
+        },
+        "inputs": {
+          "body": "${{$trigger(target)}}"
+        }
+      }
+    }
+  }
+}
