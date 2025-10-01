@@ -44,7 +44,7 @@
             "conditions": "${{$trigger(conditions, {})}}"
           }
         },
-        "stageSelector": "${{$if($output(update, statusCode), 200), health-check, end)}}"
+        "stageSelector": "${{$if($output(update, statusCode), 200), health-check, rollback)}}"
       },
       "health-check": {
         "name": "health-check",
