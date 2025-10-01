@@ -1,6 +1,6 @@
 apiVersion: v0.1
 workloads:
-  update_trigger:
+  policy-workflow:
     runtime: podman
     agent: agent_A
     controlInterfaceAccess:
@@ -10,13 +10,13 @@ workloads:
           filterMask:
             - "*"
     runtimeConfig: |
-      image: ghcr.io/eclipse-sdv-hackathon-chapter-three/mission-update/update_trigger:latest
+      image: policy-workflow:latest
       commandOptions: ["-p","5500:5500"]
 
 
   symphony:
     runtime: podman
-    agent: "" 
+    agent: agent_A 
     restartPolicy: NEVER    
     tags:
       - key: owner
@@ -36,21 +36,6 @@ workloads:
       image: ghcr.io/eclipse-symphony/symphony-api:0.48-proxy.41
       commandOptions: ["-e","CONFIG=/symphony-agent.json", "--net=host"]
 
-
-      
-  Ankaios_Dashboard:
-    runtime: podman
-    agent: agent_A
-    restartPolicy: NEVER 
-    runtimeConfig: |
-       image: ghcr.io/eclipse-ankaios-dashboard/ankaios-dashboard:v0.6.0
-       commandOptions: ["-p", "5001:5001"]
-    controlInterfaceAccess:
-        allowRules:
-          - type: StateRule
-            operation: ReadWrite
-            filterMask:
-              - "*"
 configs:
   symphony_config: |
     {

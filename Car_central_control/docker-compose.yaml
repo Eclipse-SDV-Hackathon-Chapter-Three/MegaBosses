@@ -1,8 +1,0 @@
-version: "3.9"
-services:
-  car_control:
-    build: .
-    ports:
-      - "8085:8085"
-    volumes:
-      - ./status.json:/car_control/app/status.json:rw
