@@ -57,13 +57,13 @@ export const campaignsData: Campaign[] = [
 	},
 	{
 		id: 'CAMP-2025-EB-001',
-		name: 'Emergency Braking Calibration',
+		name: 'Emergency Braking',
 		softwareComponent: 'Emergency Braking',
 		version: 'v1.8.4',
 		status: 'Active',
 		priority: 'High',
 		targetVehicles: 4,  // 4702, 4703, 4705, 4706 need update
-		completedVehicles: 2,  // 4701 and 4704 completed
+		completedVehicles: 0,  // 4701 and 4704 completed
 		packageSize: '32 MB',
 		deadline: '2025-10-30',
 		compliance: 'UN R157 - ALKS',
