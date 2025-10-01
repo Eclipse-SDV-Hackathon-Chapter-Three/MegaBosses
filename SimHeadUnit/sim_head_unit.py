@@ -220,9 +220,7 @@ def pop_up():
         # accept
         CONFIRM_STATE["pending"] = False
         return {
-            "match": True,
-            "errors": [],
-            "confirmed": True
+            "status": "accept"
         }
 
 @app.get("/health-check")
