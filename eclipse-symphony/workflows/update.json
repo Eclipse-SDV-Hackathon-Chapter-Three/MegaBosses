@@ -1,6 +1,4 @@
 {
-  "apiVersion": "workflow.symphony/v1",
-  "kind": "Campaign",
   "metadata": {
     "name": "update-v-v1"
   },
