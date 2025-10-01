@@ -51,7 +51,7 @@
         "config": {
           "name": "test",
           "url": "http://localhost:8085/health-check",
-          "method": "POST",
+          "method": "GET",
           "successCodes": [
             200,
             202
