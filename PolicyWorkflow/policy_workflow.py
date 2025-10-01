@@ -95,6 +95,6 @@ def update(body: dict = Body(..., description="Subset of required status fields"
         )
         target_res.raise_for_status()
 
-        return 200
+        return {"status": 200}
     except Exception as e:
-        return 500
+        raise HTTPException(status_code=500, detail=str(e))
