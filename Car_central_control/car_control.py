@@ -152,7 +152,7 @@ def root_page():
     <button>SCAN</button>
     <button>MODE</button>
   </div>
-  <footer>placeholder cluster</footer>
+  <footer>Test Cluster</footer>
 </div>
 <script>
 let showingConfirm = false;
