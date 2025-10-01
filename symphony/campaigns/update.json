@@ -24,7 +24,7 @@
             "conditions": "${{$trigger(conditions, {})}}"
           }
         },
-        "stageSelector": "${{$if($equal($output(check-update, body), 200), update, end)}}"
+        "stageSelector": "${{$if($equal($output(check-update, body), 200), update, '')}}"
       },
       "update": {
         "name": "update",
@@ -57,7 +57,7 @@
             202
           ]
         },
-        "stageSelector": "${{$if($equal($output(health-check, body), 200), end, rollback)}}"
+        "stageSelector": "${{$if($equal($output(health-check, body), 200), '', rollback)}}"
       },
       "rollback": {
         "name": "rollback",
