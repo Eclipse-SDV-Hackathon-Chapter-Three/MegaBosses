@@ -81,7 +81,7 @@
                                 "ankaios.runtime": "podman",
                                 "ankaios.agent": "agent_A",
                                 "ankaios.restartPolicy": "ALWAYS",
-                                "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"8080:80\"]"                   
+                                "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"9090:80\"]"                   
                             }
                         }
                     ],
