@@ -214,16 +214,13 @@ def pop_up():
         if not waited or CONFIRM_STATE["result"] is None:
             # Timeout / no decision
             CONFIRM_STATE["pending"] = False
-            raise HTTPException(status_code=408, detail="Confirmation timeout")
+            return 408
         if CONFIRM_STATE["result"] == "reject":
-            raise HTTPException(status_code=400, detail="User rejected update")
+            return 400
         # accept
         CONFIRM_STATE["pending"] = False
-        return {
-            "status_code": "200",
-            "status": "accept"
-        }
-
+        return 200
+  
 @app.get("/health-check")
 def health_check():
     return 200
@@ -245,4 +242,7 @@ def confirm(decision: dict = Body(...)):
             return {"status": "no_pending"}
         CONFIRM_STATE["result"] = d
         CONFIRM_STATE["event"].set()
-        return {"status": d}
+        if d == "accept":
+            return 200
+        else:
+            return 400
