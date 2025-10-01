@@ -15,7 +15,7 @@ app = FastAPI()
 STATUS_FILE = os.path.join(os.path.dirname(__file__), "status.json")
 
 @app.post("/health-check")
-def health_check():
+def health_check(body: dict = Body(..., description="Target to make a health check")):
     return 200
 
 def _deep_match(expected: Any, actual: Any, path: str = "") -> List[str]:
@@ -72,7 +72,7 @@ def update_possible(body: dict = Body(..., description="Subset of required statu
 
     
 @app.post("/update")
-def update(body: dict = Body(..., description="Subset of required status fields")):
+def update(body: dict = Body(..., description="Target to be published to the symphony api")):
     try:
         target = body.get("target")
 
