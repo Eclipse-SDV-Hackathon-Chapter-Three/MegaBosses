@@ -43,7 +43,7 @@
             "target": "${{$trigger(target, {})}}"
           }
         },
-        "stageSelector": "${{$if($equal($output(update, statusCode), 200), health-check, '')}}"
+        "stageSelector": "${{$if($equal($output(update, body), 200), health-check, '')}}"
       },
       "health-check": {
         "name": "health-check",
@@ -57,7 +57,12 @@
             202
           ]
         },
-        "stageSelector": "${{$if($equal($output(health-check, statusCode), 200), '', rollback)}}"
+        "inputs": {
+          "body": {
+            "target": "${{$trigger(target, {})}}"
+          }
+        },
+        "stageSelector": "${{$if($equal($output(health-check, body), 200), '', rollback)}}"
       },
       "rollback": {
         "name": "rollback",
