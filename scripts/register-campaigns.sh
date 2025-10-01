@@ -7,5 +7,5 @@ TOKEN=$(curl -X POST -H "Content-Type: application/json" -d '{"username":"admin"
 curl -X POST \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/x-yaml" \
-  --data @./eclipse-symphony/workflow/update.yaml \
+  --data @./eclipse-symphony/workflows/update.yaml \
   http://localhost:8082/v1alpha2/campaigns/update
