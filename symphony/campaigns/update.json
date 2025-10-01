@@ -40,8 +40,7 @@
         },
         "inputs": {
           "body": {
-            "target": "${{$trigger(target, {})}}",
-            "conditions": "${{$trigger(conditions, {})}}"
+            "target": "${{$trigger(target, {})}}"
           }
         },
         "stageSelector": "${{$if($output(update, statusCode), 200), health-check, rollback)}}"
@@ -74,8 +73,7 @@
         },
         "inputs": {
           "body": {
-            "rollback": "${{$trigger(rollback, {})}}",
-            "conditions": "${{$trigger(conditions, {})}}"
+            "rollback": "${{$trigger(rollback, {})}}"
           }
         }
       }
