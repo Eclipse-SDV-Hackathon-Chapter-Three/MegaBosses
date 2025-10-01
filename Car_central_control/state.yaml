@@ -11,7 +11,11 @@ workloads:
             - "*"
     runtimeConfig: |
       image: localhost/policy-workflow:latest
+<<<<<<< HEAD
       commandOptions: ["-p","8085:8085"]
+=======
+      commandOptions: ["-p","8085:8085", "--net=host"]
+>>>>>>> origin/feature/create-campaign
 
   symphony:
     runtime: podman
