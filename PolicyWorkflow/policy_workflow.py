@@ -59,16 +59,16 @@ def update_possible(body: dict = Body(..., description="Subset of required statu
     if errors:
         raise HTTPException(status_code=400, detail={"match": False, "errors": errors})
     
-    # popup_res = requests.get(
-    #   "http://localhost:8086/pop-up"    
-    # )
+    popup_res = requests.get(
+      "http://localhost:8086/pop-up"    
+    )
 
-    # popup_res.raise_for_status()
+    popup_res.raise_for_status()
 
     return {
-          "status_code": 200,
-          "ok": 200
-      }
+        "status_code": popup_res.status_code,
+        "ok": popup_res.ok
+    }
 
     
 

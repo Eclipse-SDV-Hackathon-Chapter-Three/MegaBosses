@@ -36,6 +36,19 @@ workloads:
     runtimeConfig: |
       image: localhost/sim-head-unit:v0.0.1
       commandOptions: ["-p","8086:8086", "--net=host"]
+  Ankaios_Dashboard:
+    runtime: podman
+    agent: agent_A
+    restartPolicy: NEVER 
+    runtimeConfig: |
+       image: ghcr.io/eclipse-ankaios-dashboard/ankaios-dashboard:v0.6.0
+       commandOptions: ["-p", "5001:5001"]
+    controlInterfaceAccess:
+        allowRules:
+          - type: StateRule
+            operation: ReadWrite
+            filterMask:
+              - "*"
   symphony:
     runtime: podman
     agent: agent_A 
