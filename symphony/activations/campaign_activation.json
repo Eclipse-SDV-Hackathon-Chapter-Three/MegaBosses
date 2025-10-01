@@ -6,7 +6,7 @@
         "campaign": "update:v1",
         "stage": "",
         "inputs": {
-            "app-to-update": "main-app",
+            "app-to-update": "EmergencyBrake",
             "conditions": {
                 "vehicle_state": {
                     "engine_status": "stopped",
