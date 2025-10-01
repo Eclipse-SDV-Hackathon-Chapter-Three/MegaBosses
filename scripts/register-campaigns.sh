@@ -9,3 +9,7 @@ curl -X POST \
   -H "Content-Type: application/json" \
   --data @./eclipse-symphony/workflows/update.json \
   http://localhost:8082/v1alpha2/campaigns/update-v-v1
+
+curl -X GET \
+  -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8082/v1alpha2/campaigns
