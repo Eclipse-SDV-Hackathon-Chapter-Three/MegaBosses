@@ -242,7 +242,4 @@ def confirm(decision: dict = Body(...)):
             return {"status": "no_pending"}
         CONFIRM_STATE["result"] = d
         CONFIRM_STATE["event"].set()
-        if d == "accept":
-            return 200
-        else:
-            return 400
+        return {"status": d}
