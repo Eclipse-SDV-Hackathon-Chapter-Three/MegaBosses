@@ -57,9 +57,9 @@ docker compose -f /symphony/docker-compose.yaml up -d
 
 Before running the Ankaios manifest [state.yaml] you must build the container images for the car apps to test the update and for the car_control (that will run the policy workflow) with:
 ```bash
-sudo podman build -t localhost/policy-workflow:v0.0.1 ./Car_central_control/Dockerfile
-sudo podman build -t localhost/emergency-brake:v0.0.1 ./EmergencyBrake_v1/Dockerfile 
-sudo podman build -t localhost/emergency-brake:v0.0.2 ./EmergencyBrake_v2/Dockerfile 
+sudo podman build -t localhost/policy-workflow:v0.0.1 ./Car_central_control
+sudo podman build -t localhost/emergency-brake:v0.0.1 ./EmergencyBrake_v1 
+sudo podman build -t localhost/emergency-brake:v0.0.2 ./EmergencyBrake_v2 
 ```
 
 Start the Ankaios server and Ankaios agent with systemd:
