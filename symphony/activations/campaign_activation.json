@@ -6,7 +6,7 @@
         "campaign": "update:v1",
         "stage": "",
         "inputs": {
-            "app-to-update": "EmergencyBrake",
+            "app-to-update": "emergency-brake",
             "conditions": {
                 "vehicle_state": {
                     "engine_status": "stopped",
@@ -37,13 +37,13 @@
                     "forceRedeploy": true,
                     "components": [
                         {
-                            "name": "ankaios-app",   
+                            "name": "emergency-brake",   
                             "type": "ankaios",             
                             "properties": {
                                 "ankaios.runtime": "podman",
                                 "ankaios.agent": "agent_A",
                                 "ankaios.restartPolicy": "ALWAYS",
-                                "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"8080:80\"]"                   
+                                "ankaios.runtimeConfig": "image: localhost/emergency-brake:0.0.1"                   
                             }
                         }
                     ],
@@ -75,13 +75,13 @@
                     "forceRedeploy": true,
                     "components": [
                         {
-                            "name": "ankaios-app",   
+                            "name": "emergency-brake",   
                             "type": "ankaios",             
                             "properties": {
                                 "ankaios.runtime": "podman",
                                 "ankaios.agent": "agent_A",
                                 "ankaios.restartPolicy": "ALWAYS",
-                                "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"9090:80\"]"                   
+                                "ankaios.runtimeConfig": "image: localhost/emergency-brake:0.0.2"                   
                             }
                         }
                     ],
