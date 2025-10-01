@@ -21,7 +21,7 @@
         "inputs": {
           "body": {
             "app-to-update": "${{$trigger(app-to-update, {})}}",
-            "conditions": "${{$trigger(conditions, {})}}",
+            "conditions": "${{$trigger(conditions, {})}}"
           }
         },
         "stageSelector": "${{$if($equal($output(check-update, status_code), 200), update, '')}}"
@@ -40,7 +40,7 @@
         },
         "inputs": {
           "body": {
-            "target": "${{$trigger(target, {})}}",
+            "target": "${{$trigger(target, {})}}"
           }
         },
         "stageSelector": "${{$if($equal($output(update, status_code), 200), health-check, '')}}"
