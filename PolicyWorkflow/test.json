@@ -1,0 +1,12 @@
+{
+  "vehicle_state": {
+    "engine_status": "stopped",
+    "gear": "park"
+  },
+  "battery_status": {
+    "charging": true
+  },
+  "update": {
+    "state_ready": "ok"
+  }
+}
