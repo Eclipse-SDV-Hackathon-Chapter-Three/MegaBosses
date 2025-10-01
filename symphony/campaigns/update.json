@@ -22,10 +22,9 @@
           "body": {
             "app-to-update": "${{$trigger(app-to-update, {})}}",
             "conditions": "${{$trigger(conditions, {})}}",
-            "status": ""
           }
         },
-        "stageSelector": "${{$if($equal($output(check-update, body.status), 200), update, '')}}"
+        "stageSelector": "${{$if($equal($output(check-update, status_code), 200), update, '')}}"
       },
       "update": {
         "name": "update",
@@ -42,10 +41,9 @@
         "inputs": {
           "body": {
             "target": "${{$trigger(target, {})}}",
-            "status": ""
           }
         },
-        "stageSelector": "${{$if($equal($output(update, body.status), 200), health-check, '')}}"
+        "stageSelector": "${{$if($equal($output(update, status_code), 200), health-check, '')}}"
       },
       "health-check": {
         "name": "health-check",
@@ -59,12 +57,7 @@
             202
           ]
         },
-         "inputs": {
-          "body": {
-            "status": ""
-          }
-        },
-        "stageSelector": "${{$if($equal($output(health-check, body.status), 200), '', rollback)}}"
+        "stageSelector": "${{$if($equal($output(health-check, status_code), 200), '', rollback)}}"
       },
       "rollback": {
         "name": "rollback",
