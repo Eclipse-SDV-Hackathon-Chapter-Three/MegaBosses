@@ -23,7 +23,19 @@ workloads:
             - "*"
     runtimeConfig: |
       image: localhost/emergency-brake:v0.0.1
-      commandOptions: ["-p","8085:8085", "--net=host"]
+      commandOptions: ["-p","8000:8000", "--net=host"]
+  sim-head-unit:
+    runtime: podman
+    agent: agent_A
+    controlInterfaceAccess:
+      allowRules:
+        - type: StateRule
+          operation: ReadWrite
+          filterMask:
+            - "*"
+    runtimeConfig: |
+      image: localhost/sim-head-unit:v0.0.1
+      commandOptions: ["-p","8086:8086", "--net=host"]
   symphony:
     runtime: podman
     agent: agent_A 
