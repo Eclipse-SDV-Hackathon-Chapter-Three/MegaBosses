@@ -219,11 +219,8 @@ def pop_up():
             raise HTTPException(status_code=400, detail="User rejected update")
         # accept
         CONFIRM_STATE["pending"] = False
-        return {
-            "status_code": "200",
-            "status": "accept"
-        }
-
+        return 200
+  
 @app.get("/health-check")
 def health_check():
     return 200
