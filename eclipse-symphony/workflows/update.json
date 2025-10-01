@@ -39,14 +39,6 @@
         "inputs": {
           "body": "${{$trigger(target, {})}}"
         }
-      },
-      "debug": {
-        "name": "debug",
-        "provider": "providers.stage.echo",
-        "inputs": {
-          "message": "${{$trigger(token, \"\")}}"
-        },
-        "stageSelector": "update"
       }
     }
   }
