@@ -11,7 +11,7 @@ workloads:
             - "*"
     runtimeConfig: |
       image: localhost/policy-workflow:latest
-      commandOptions: ["-p","5500:5500"]
+      commandOptions: ["-p","8085:8085"]
 
   symphony:
     runtime: podman
