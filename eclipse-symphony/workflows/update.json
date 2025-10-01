@@ -34,7 +34,7 @@
           ]
         },
         "inputs": {
-          "body": "${{$trigger(target)}}"
+          "body": "${{$trigger(target, {})}}"
         }
       }
     }
