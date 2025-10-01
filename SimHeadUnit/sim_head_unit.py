@@ -214,9 +214,9 @@ def pop_up():
         if not waited or CONFIRM_STATE["result"] is None:
             # Timeout / no decision
             CONFIRM_STATE["pending"] = False
-            return 200
+            return 400
         if CONFIRM_STATE["result"] == "reject":
-            return 200
+            return 400
         # accept
         CONFIRM_STATE["pending"] = False
         return 200
