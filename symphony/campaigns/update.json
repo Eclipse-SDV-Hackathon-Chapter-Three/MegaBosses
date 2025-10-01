@@ -3,7 +3,7 @@
     "name": "update-v-v1"
   },
   "spec": {
-    "rootResource": "update-campaign",
+    "rootResource": "update",
     "firstStage": "check-update",
     "selfDriving": true,
     "stages": {
@@ -24,7 +24,7 @@
             "conditions": "${{$trigger(conditions, {})}}"
           }
         },
-        "stageSelector": "${{$if($equal($output(check-update, body), 200), update, '')}}"
+        "stageSelector": "${{$if($equal($output(check-update, body), 200), update, update)}}"
       },
       "update": {
         "name": "update",
