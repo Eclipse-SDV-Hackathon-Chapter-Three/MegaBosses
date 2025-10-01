@@ -3,12 +3,12 @@
     "name": "update-v-v1"
   },
   "spec": {
-    "rootResource": "update",
+    "rootResource": "update-campaign",
     "firstStage": "check-update",
     "selfDriving": true,
     "stages": {
       "check-update": {
-        "name": "update",
+        "name": "check-update",
         "provider": "providers.stage.http",
         "config": {
           "name": "test",
