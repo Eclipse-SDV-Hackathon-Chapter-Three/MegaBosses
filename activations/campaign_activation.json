@@ -37,13 +37,13 @@
                     "forceRedeploy": true,
                     "components": [
                         {
-                            "name": "ankaios-app",   
+                            "name": "emergency-brake",   
                             "type": "ankaios",             
                             "properties": {
                                 "ankaios.runtime": "podman",
                                 "ankaios.agent": "agent_A",
                                 "ankaios.restartPolicy": "ALWAYS",
-                                "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"8080:80\"]"                   
+                                "ankaios.runtimeConfig": "image: localhost/emergency-brake:0.0.1\ncommandOptions: [\"-p\", \"8086:8086\", \"--net=host\"]"                   
                             }
                         }
                     ],
@@ -81,7 +81,7 @@
                                 "ankaios.runtime": "podman",
                                 "ankaios.agent": "agent_A",
                                 "ankaios.restartPolicy": "ALWAYS",
-                                "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"8080:80\"]"                   
+                                "ankaios.runtimeConfig": "image: localhost/emergency-brake:0.0.2\ncommandOptions: [\"-p\", \"8086:8086\", \"--net=host\"]"                    
                             }
                         }
                     ],
