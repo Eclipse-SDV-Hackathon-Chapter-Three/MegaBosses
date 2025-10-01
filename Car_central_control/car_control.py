@@ -295,3 +295,31 @@ def confirm(decision: dict = Body(...)):
         CONFIRM_STATE["result"] = d
         CONFIRM_STATE["event"].set()
         return {"status": d}
+
+        @app.post("/update")
+def update(body: dict = Body(..., description="Subset of required status fields")):
+    target = body.get("target")
+
+    SYMPHONY_API_URL = "http://localhost:8082/v1alpha2/"
+    auth_resp = requests.post(
+        f"{SYMPHONY_API_URL}users/auth",
+        headers={"Content-Type": "application/json"},
+        json={"username": "admin", "password": ""}
+    )
+    auth_resp.raise_for_status()
+    token = auth_resp.json().get("accessToken")
+
+    target_res = requests.post(
+        f"{SYMPHONY_API_URL}targets/registry/ankaios-target",
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json"
+        },
+        json=target
+    )
+    target_res.raise_for_status()
+
+    return {
+    "status_code": target_res.status_code,
+    "ok": target_res.ok
+}
