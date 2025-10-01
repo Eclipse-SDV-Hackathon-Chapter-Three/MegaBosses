@@ -296,7 +296,7 @@ def confirm(decision: dict = Body(...)):
         CONFIRM_STATE["event"].set()
         return {"status": d}
 
-        @app.post("/update")
+@app.post("/update")
 def update(body: dict = Body(..., description="Subset of required status fields")):
     target = body.get("target")
 
