@@ -8,7 +8,7 @@
     "selfDriving": true,
     "stages": {
       "check-update": {
-        "name": "check-update",
+        "name": "update",
         "provider": "providers.stage.http",
         "config": {
           "name": "test",
