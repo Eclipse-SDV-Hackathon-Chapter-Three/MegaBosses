@@ -20,7 +20,6 @@
     }
   },
   "battery_status": {
-    "charge_level_percent": 85,
     "charging": true
   },
   "update": {
