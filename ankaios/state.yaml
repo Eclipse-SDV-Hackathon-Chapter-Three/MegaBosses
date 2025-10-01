@@ -10,9 +10,20 @@ workloads:
           filterMask:
             - "*"
     runtimeConfig: |
-      image: localhost/policy-workflow:latest
+      image: localhost/policy-workflow:v0.0.1
       commandOptions: ["-p","8085:8085", "--net=host"]
-
+  emergency-brake:
+    runtime: podman
+    agent: agent_A
+    controlInterfaceAccess:
+      allowRules:
+        - type: StateRule
+          operation: ReadWrite
+          filterMask:
+            - "*"
+    runtimeConfig: |
+      image: localhost/emergency-brake:v0.0.1
+      commandOptions: ["-p","8085:8085", "--net=host"]
   symphony:
     runtime: podman
     agent: agent_A 
