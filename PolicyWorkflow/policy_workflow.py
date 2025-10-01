@@ -14,7 +14,7 @@ app = FastAPI()
 
 STATUS_FILE = os.path.join(os.path.dirname(__file__), "status.json")
 
-@app.get("/health-check")
+@app.post("/health-check")
 def health_check():
     return 200
 
