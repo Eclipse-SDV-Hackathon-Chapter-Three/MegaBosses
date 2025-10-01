@@ -51,15 +51,12 @@ docker compose -f /symphony/docker-compose.yaml up -d
 
 #### Starting the management platform app (Challenge 1)
 
-
-
 ### Start the in-vehicle part
 
-Before running the Ankaios manifest [state.yaml] you must build the container images for the car apps to test the update and for the car_control (that will run the policy workflow) with:
+Before running the Ankaios manifest [state.yaml] you must build the container images for the car apps to test the update and for the policy workflow with:
 ```bash
-sudo podman build -t localhost/policy-workflow:v0.0.1 ./Car_central_control/Dockerfile
-sudo podman build -t localhost/emergency-brake:v0.0.1 ./EmergencyBrake_v1/Dockerfile 
-sudo podman build -t localhost/emergency-brake:v0.0.2 ./EmergencyBrake_v2/Dockerfile 
+chmod +x ./scripts/build-images.sh 
+./scripts/build-images.sh 
 ```
 
 Start the Ankaios server and Ankaios agent with systemd:
@@ -72,6 +69,16 @@ To run the over-the-air (OTA) scenario, just apply the [state.yaml](./ankaios/st
 
 ```bash
 ank apply ankaios/state.yaml
+```
+
+### Register the Campaign in Symphony
+
+Before you can activate a campaign, you must register it with the Symphony API.  
+Use the provided script to do this:
+
+```bash
+chmod +x ./scripts/register-campaigns.sh 
+./scripts/register-campaigns.sh
 ```
 
 #### Open the app to check cluster 

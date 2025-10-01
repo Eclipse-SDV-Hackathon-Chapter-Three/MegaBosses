@@ -4,11 +4,11 @@
   },
   "spec": {
     "rootResource": "update",
-    "firstStage": "check-update",
+    "firstStage": "update",
     "selfDriving": true,
     "stages": {
       "check-update": {
-        "name": "check-update",
+        "name": "update",
         "provider": "providers.stage.http",
         "config": {
           "name": "test",
@@ -24,7 +24,7 @@
             "conditions": "${{$trigger(conditions, {})}}"
           }
         },
-        "stageSelector": "${{$if($output(check-update, statusCode), 200), update, end)}}"
+        "stageSelector": "${{$if($equal($output(check-update, body), 200), update, '')}}"
       },
       "update": {
         "name": "update",
@@ -40,11 +40,10 @@
         },
         "inputs": {
           "body": {
-            "target": "${{$trigger(target, {})}}",
-            "conditions": "${{$trigger(conditions, {})}}"
+            "target": "${{$trigger(target, {})}}"
           }
         },
-        "stageSelector": "${{$if($output(update, statusCode), 200), health-check, rollback)}}"
+        "stageSelector": "${{$if($equal($output(update, body), 200), health-check, '')}}"
       },
       "health-check": {
         "name": "health-check",
@@ -58,7 +57,12 @@
             202
           ]
         },
-        "stageSelector": "${{$if($output(health-check, statusCode), 200), end, rollback)}}"
+        "inputs": {
+          "body": {
+            "target": "${{$trigger(target, {})}}"
+          }
+        },
+        "stageSelector": "${{$if($equal($output(health-check, body), 200), '', rollback)}}"
       },
       "rollback": {
         "name": "rollback",
@@ -74,8 +78,7 @@
         },
         "inputs": {
           "body": {
-            "rollback": "${{$trigger(rollback, {})}}",
-            "conditions": "${{$trigger(conditions, {})}}"
+            "rollback": "${{$trigger(rollback, {})}}"
           }
         }
       }
