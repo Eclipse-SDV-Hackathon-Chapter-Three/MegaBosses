@@ -1,0 +1,27 @@
+{
+	"name": "fleetsync-ota",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "Policy-Driven OTA Updates for Municipal Fleets - Eclipse SDV Hackathon",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview",
+		"type-check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"lucide-react": "^0.544.0"
+	},
+	"devDependencies": {
+		"@types/react": "^19.1.16",
+		"@types/react-dom": "^19.1.9",
+		"@vitejs/plugin-react": "^5.0.4",
+		"autoprefixer": "^10.4.20",
+		"postcss": "^8.4.49",
+		"tailwindcss": "^3.4.16",
+		"typescript": "^5.9.3",
+		"vite": "^6.0.11"
+	}
+}
