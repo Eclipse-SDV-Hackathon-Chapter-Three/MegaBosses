@@ -15,8 +15,7 @@
           "url": "http://localhost:8085/check-update",
           "method": "POST",
           "successCodes": [
-            200,
-            202
+            200
           ]
         },
         "inputs": {

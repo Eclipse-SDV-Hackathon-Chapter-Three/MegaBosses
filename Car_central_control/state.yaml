@@ -13,7 +13,6 @@ workloads:
       image: policy-workflow:latest
       commandOptions: ["-p","5500:5500"]
 
-
   symphony:
     runtime: podman
     agent: agent_A 
