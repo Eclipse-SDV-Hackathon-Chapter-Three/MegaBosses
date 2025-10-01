@@ -64,66 +64,68 @@ def update_possible(expected: dict = Body(..., description="Subset of required s
 
 @app.post("/update")
 def update(body: dict = Body(..., description="Subset of required status fields")):
-    # target = body.get("target")
-    target = {
-        "metadata": {
-            "name": "ankaios-target"
-        },
-        "spec": {
-            "forceRedeploy": True,
-            "components": [
-                {
-                    "name": "ankaios-app",   
-                    "type": "ankaios",             
-                    "properties": {
-                        "ankaios.runtime": "podman",
-                        "ankaios.agent": "agent_A",
-                        "ankaios.restartPolicy": "ALWAYS",
-                        "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"9090:80\"]"                   
-                    }
-                }
-            ],
-            "topologies": [
-                {
-                    "bindings": [
-                        {
-                            "role": "ankaios",
-                            "provider": "providers.target.mqtt",
-                            "config": {
-                                "name": "proxy",
-                                "brokerAddress": "tcp://127.0.0.1:1883",
-                                "clientID": "symphony",
-                                "requestTopic": "coa-request",
-                                "responseTopic": "coa-response",
-                                "timeoutSeconds":  "30"
-                            }
+    try:
+        target = {
+            "metadata": {
+                "name": "ankaios-target"
+            },
+            "spec": {
+                "forceRedeploy": True,
+                "components": [
+                    {
+                        "name": "ankaios-app",   
+                        "type": "ankaios",             
+                        "properties": {
+                            "ankaios.runtime": "podman",
+                            "ankaios.agent": "agent_A",
+                            "ankaios.restartPolicy": "ALWAYS",
+                            "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"9090:80\"]"                   
                         }
-                    ]
-                }
-            ]
+                    }
+                ],
+                "topologies": [
+                    {
+                        "bindings": [
+                            {
+                                "role": "ankaios",
+                                "provider": "providers.target.mqtt",
+                                "config": {
+                                    "name": "proxy",
+                                    "brokerAddress": "tcp://127.0.0.1:1883",
+                                    "clientID": "symphony",
+                                    "requestTopic": "coa-request",
+                                    "responseTopic": "coa-response",
+                                    "timeoutSeconds":  "30"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
         }
-    }
 
-    SYMPHONY_API_URL = "http://localhost:8082/v1alpha2/"
-    auth_resp = requests.post(
-        f"{SYMPHONY_API_URL}users/auth",
-        headers={"Content-Type": "application/json"},
-        json={"username": "admin", "password": ""}
-    )
-    auth_resp.raise_for_status()
-    token = auth_resp.json().get("accessToken")
+        SYMPHONY_API_URL = "http://localhost:8082/v1alpha2/"
+        auth_resp = requests.post(
+            f"{SYMPHONY_API_URL}users/auth",
+            headers={"Content-Type": "application/json"},
+            json={"username": "admin", "password": ""}
+        )
+        auth_resp.raise_for_status()
+        token = auth_resp.json().get("accessToken")
 
-    target_res = requests.post(
-        f"{SYMPHONY_API_URL}targets/registry/ankaios-target",
-        headers={
-            "Authorization": f"Bearer {token}",
-            "Content-Type": "application/json"
-        },
-        json=target
-    )
-    target_res.raise_for_status()
+        target_res = requests.post(
+            f"{SYMPHONY_API_URL}targets/registry/ankaios-target",
+            headers={
+                "Authorization": f"Bearer {token}",
+                "Content-Type": "application/json"
+            },
+            json=target
+        )
+        target_res.raise_for_status()
 
-    return {
-        "status_code": target_res.status_code,
-        "ok": target_res.ok
-    }
+        return {
+            "status_code": target_res.status_code,
+            "ok": target_res.ok
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
