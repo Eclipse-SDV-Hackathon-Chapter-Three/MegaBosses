@@ -13,10 +13,7 @@
         "config": {
           "name": "test",
           "url": "http://localhost:8085/check-update",
-          "method": "POST",
-          "successCodes": [
-            200
-          ]
+          "method": "POST"
         },
         "inputs": {
           "body": {
@@ -24,7 +21,7 @@
             "conditions": "${{$trigger(conditions, {})}}"
           }
         },
-        "stageSelector": "${{$if($equal($output(check-update, body), 200), update, update)}}"
+        "stageSelector": "${{$if($equal($output(check-update, body), 200), update, '')}}"
       },
       "update": {
         "name": "update",
@@ -32,18 +29,14 @@
         "config": {
           "name": "test",
           "url": "http://localhost:8085/update",
-          "method": "POST",
-          "successCodes": [
-            200,
-            202
-          ]
+          "method": "POST"
         },
         "inputs": {
           "body": {
             "target": "${{$trigger(target, {})}}"
           }
         },
-        "stageSelector": "${{$if($equal($output(update, body), 200), health-check, '')}}"
+        "stageSelector": "${{$if($lt($output(update, body), 200), health-check, '')}}"
       },
       "health-check": {
         "name": "health-check",
@@ -62,7 +55,7 @@
             "target": "${{$trigger(target, {})}}"
           }
         },
-        "stageSelector": "${{$if($equal($output(health-check, body), 200), '', rollback)}}"
+        "stageSelector": "${{$if($lt($output(health-check, body), 205), '', rollback)}}"
       },
       "rollback": {
         "name": "rollback",

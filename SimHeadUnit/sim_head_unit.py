@@ -211,14 +211,13 @@ def pop_up():
     waited = CONFIRM_STATE["event"].wait(timeout=60)
 
     with CONFIRM_LOCK:
-        if not waited or CONFIRM_STATE["result"] is None:
-            # Timeout / no decision
-            CONFIRM_STATE["pending"] = False
-            return 400
-        if CONFIRM_STATE["result"] == "reject":
-            return 400
-        # accept
+        result = CONFIRM_STATE["result"]
         CONFIRM_STATE["pending"] = False
+
+        if not waited or result is None:
+            raise HTTPException(status_code=400, detail="Invalid decision")
+        if result == "reject":
+            raise HTTPException(status_code=400, detail="Invalid decision")
         return 200
   
 @app.get("/health-check")

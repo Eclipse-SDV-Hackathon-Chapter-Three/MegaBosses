@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, Body
+from fastapi.responses import JSONResponse
 import json
 import os
 import requests
@@ -38,29 +39,28 @@ def _deep_match(expected: Any, actual: Any, path: str = "") -> List[str]:
     return errs
 
 @app.post("/check-update")
-def update_possible(body: dict = Body(..., description="Subset of required status fields")):
-    expected = body.get("conditions")
+def update_possible():
 
-    if not os.path.exists(STATUS_FILE):
-        return 500
-    try:
-        with open(STATUS_FILE, "r") as f:
-            actual = json.load(f)
-    except Exception as e:
-        return 500
+    # if not os.path.exists(STATUS_FILE):
+    #     return 500
+    # try:
+    #     with open(STATUS_FILE, "r") as f:
+    #         actual = json.load(f)
+    # except Exception as e:
+    #     return 500
 
-    errors = _deep_match(expected, actual)
-    if errors:
-        return 500
+    # errors = _deep_match(expected, actual)
+    # if errors:
+    #     return 500
     
     popup_res = requests.get(
       "http://localhost:8086/pop-up"    
     )
 
     if popup_res.status_code == 200:
-      return 200
+        return 200
     else:
-      return 400
+        return popup_res
     
 @app.post("/update")
 def update(body: dict = Body(..., description="Target to be published to the symphony api")):

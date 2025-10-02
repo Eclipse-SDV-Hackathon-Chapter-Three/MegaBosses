@@ -1,0 +1,98 @@
+{
+    "metadata": {
+        "name": "update-activation-reverse"
+    },
+    "spec": {
+        "campaign": "update:v1",
+        "stage": "",
+        "inputs": {
+            "app-to-update": "emergency-brake",
+            "conditions": {
+                "vehicle_state": {
+                    "engine_status": "stopped",
+                    "gear": "park",
+                    "speed_kmh": 0
+                },
+                "battery_status": {
+                    "charging": true
+                }
+            },
+            "rollback": {
+                "metadata": {
+                    "name": "ankaios-target"
+                },
+                "spec": {
+                    "forceRedeploy": true,
+                    "components": [
+                        {
+                            "name": "emergency-brake",   
+                            "type": "ankaios",             
+                            "properties": {
+                                "ankaios.runtime": "podman",
+                                "ankaios.agent": "agent_A",
+                                "ankaios.restartPolicy": "ALWAYS",
+                                "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"9090:80\"]"                
+                            }
+                        }
+                    ],
+                    "topologies": [
+                        {
+                            "bindings": [
+                                {
+                                    "role": "ankaios",
+                                    "provider": "providers.target.mqtt",
+                                    "config": {
+                                        "name": "proxy",
+                                        "brokerAddress": "tcp://127.0.0.1:1883",
+                                        "clientID": "symphony",
+                                        "requestTopic": "coa-request",
+                                        "responseTopic": "coa-response",
+                                        "timeoutSeconds":  "30"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "target": {
+                "metadata": {
+                    "name": "ankaios-target"
+                },
+                "spec": {
+                    "forceRedeploy": true,
+                    "components": [
+                        {
+                            "name": "emergency-brake",   
+                            "type": "ankaios",             
+                            "properties": {
+                                "ankaios.runtime": "podman",
+                                "ankaios.agent": "agent_A",
+                                "ankaios.restartPolicy": "ALWAYS",
+                                "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"8080:80\"]"                   
+                            }
+                        }
+                    ],
+                    "topologies": [
+                        {
+                            "bindings": [
+                                {
+                                    "role": "ankaios",
+                                    "provider": "providers.target.mqtt",
+                                    "config": {
+                                        "name": "proxy",
+                                        "brokerAddress": "tcp://127.0.0.1:1883",
+                                        "clientID": "symphony",
+                                        "requestTopic": "coa-request",
+                                        "responseTopic": "coa-response",
+                                        "timeoutSeconds":  "30"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
