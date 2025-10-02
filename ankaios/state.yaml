@@ -15,21 +15,21 @@ workloads:
     runtimeConfig: |
       image: localhost/policy-workflow:v0.0.1
       commandOptions: ["-p","8085:8085", "--net=host"]
-  # emergency-brake:
-  #   runtime: podman
-  #   agent: agent_A
-  #   tags:
-  #     - key: version
-  #       value: v0.0.1
-  #   controlInterfaceAccess:
-  #     allowRules:
-  #       - type: StateRule
-  #         operation: ReadWrite
-  #         filterMask:
-  #           - "*"
-  #   runtimeConfig: |
-  #     image: docker.io/ruipires99/emergency-brake:v0.0.1
-  #     commandOptions: ["-p","8000:8000"]
+  emergency-brake:
+    runtime: podman
+    agent: agent_A
+    tags:
+      - key: version
+        value: v0.0.1
+    controlInterfaceAccess:
+      allowRules:
+        - type: StateRule
+          operation: ReadWrite
+          filterMask:
+            - "*"
+    runtimeConfig: |
+      image: docker.io/ruipires99/instrument-cluster:v0.0.1
+      commandOptions: ["-p","8000:8000"]
   sim-head-unit:
     runtime: podman
     agent: agent_A

@@ -55,8 +55,8 @@ docker compose -f /symphony/docker-compose.yaml up -d
 
 Before running the Ankaios manifest [state.yaml] you must build the container images for the car apps to test the update and for the policy workflow with:
 ```bash
-chmod +x ./scripts/build-images.sh 
-./scripts/build-images.sh 
+chmod +x ./scripts/build-pull-images.sh 
+./scripts/build-pull-images.sh 
 ```
 
 Start the Ankaios server and Ankaios agent with systemd:

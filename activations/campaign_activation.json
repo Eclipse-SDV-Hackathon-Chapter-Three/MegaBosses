@@ -6,7 +6,7 @@
         "campaign": "update:v1",
         "stage": "",
         "inputs": {
-            "app-to-update": "emergency-brake",
+            "app-to-update": "instrument-cluster",
             "conditions": {
                 "vehicle_state": {
                     "engine_status": "stopped",
@@ -25,13 +25,13 @@
                     "forceRedeploy": true,
                     "components": [
                         {
-                            "name": "emergency-brake",   
+                            "name": "instrument-cluster",   
                             "type": "ankaios",             
                             "properties": {
                                 "ankaios.runtime": "podman",
                                 "ankaios.agent": "agent_A",
                                 "ankaios.restartPolicy": "ALWAYS",
-                                "ankaios.runtimeConfig": "image: docker.io/ruipires99/emergency-brake:v0.0.1\ncommandOptions: [\"-p\", \"8000:8000\"]"                
+                                "ankaios.runtimeConfig": "image: docker.io/ruipires99/instrument-cluster:v0.0.1\ncommandOptions: [\"-p\", \"8000:8000\"]"                
                             }
                         }
                     ],
@@ -63,13 +63,13 @@
                     "forceRedeploy": true,
                     "components": [
                         {
-                            "name": "emergency-brake",   
+                            "name": "instrument-cluster",   
                             "type": "ankaios",             
                             "properties": {
                                 "ankaios.runtime": "podman",
                                 "ankaios.agent": "agent_A",
                                 "ankaios.restartPolicy": "ALWAYS",
-                                "ankaios.runtimeConfig": "image: docker.io/ruipires99/emergency-brake:v0.0.2\ncommandOptions: [\"-p\", \"8000:8000\"]"                   
+                                "ankaios.runtimeConfig": "image: docker.io/ruipires99/instrument-cluster:v0.0.2\ncommandOptions: [\"-p\", \"8000:8000\"]"                   
                             }
                         }
                     ],
