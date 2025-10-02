@@ -1,12 +1,12 @@
 {
     "metadata": {
-        "name": "update-activation"
+        "name": "update-activation-reverse"
     },
     "spec": {
         "campaign": "update:v1",
         "stage": "",
         "inputs": {
-            "app-to-update": "instrument-cluster",
+            "app-to-update": "emergency-brake",
             "conditions": {
                 "vehicle_state": {
                     "engine_status": "stopped",
@@ -25,13 +25,13 @@
                     "forceRedeploy": true,
                     "components": [
                         {
-                            "name": "instrument-cluster",   
+                            "name": "emergency-brake",   
                             "type": "ankaios",             
                             "properties": {
                                 "ankaios.runtime": "podman",
                                 "ankaios.agent": "agent_A",
                                 "ankaios.restartPolicy": "ALWAYS",
-                                "ankaios.runtimeConfig": "image: docker.io/ruipires99/instrument-cluster:v0.0.1\ncommandOptions: [\"-p\", \"8000:8000\"]"                
+                                "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"9090:80\"]"                
                             }
                         }
                     ],
@@ -63,13 +63,13 @@
                     "forceRedeploy": true,
                     "components": [
                         {
-                            "name": "instrument-cluster",   
+                            "name": "emergency-brake",   
                             "type": "ankaios",             
                             "properties": {
                                 "ankaios.runtime": "podman",
                                 "ankaios.agent": "agent_A",
                                 "ankaios.restartPolicy": "ALWAYS",
-                                "ankaios.runtimeConfig": "image: docker.io/ruipires99/instrument-cluster:v0.0.2\ncommandOptions: [\"-p\", \"8000:8000\"]"                   
+                                "ankaios.runtimeConfig": "image: docker.io/library/nginx\ncommandOptions: [\"-p\", \"8080:80\"]"                   
                             }
                         }
                     ],

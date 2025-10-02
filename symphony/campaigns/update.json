@@ -13,10 +13,7 @@
         "config": {
           "name": "test",
           "url": "http://localhost:8085/check-update",
-          "method": "POST",
-          "successCodes": [
-            200
-          ]
+          "method": "POST"
         },
         "inputs": {
           "body": {
@@ -24,7 +21,7 @@
             "conditions": "${{$trigger(conditions, {})}}"
           }
         },
-        "stageSelector": "${{$if($output(check-update, statusCode), 200), update, end)}}"
+        "stageSelector": "${{$if($equal($output(check-update, body), 200), update, '')}}"
       },
       "update": {
         "name": "update",
@@ -32,19 +29,14 @@
         "config": {
           "name": "test",
           "url": "http://localhost:8085/update",
-          "method": "POST",
-          "successCodes": [
-            200,
-            202
-          ]
+          "method": "POST"
         },
         "inputs": {
           "body": {
-            "target": "${{$trigger(target, {})}}",
-            "conditions": "${{$trigger(conditions, {})}}"
+            "target": "${{$trigger(target, {})}}"
           }
         },
-        "stageSelector": "${{$if($output(update, statusCode), 200), health-check, rollback)}}"
+        "stageSelector": "${{$if($lt($output(update, body), 200), health-check, '')}}"
       },
       "health-check": {
         "name": "health-check",
@@ -52,13 +44,14 @@
         "config": {
           "name": "test",
           "url": "http://localhost:8085/health-check",
-          "method": "POST",
-          "successCodes": [
-            200,
-            202
-          ]
+          "method": "POST"
         },
-        "stageSelector": "${{$if($output(health-check, statusCode), 200), end, rollback)}}"
+        "inputs": {
+          "body": {
+            "target": "${{$trigger(target, {})}}"
+          }
+        },
+        "stageSelector": "${{$if($lt($output(health-check, body), 205), '', rollback)}}"
       },
       "rollback": {
         "name": "rollback",
@@ -66,16 +59,11 @@
         "config": {
           "name": "test",
           "url": "http://localhost:8085/rollback",
-          "method": "POST",
-          "successCodes": [
-            200,
-            202
-          ]
+          "method": "POST"
         },
         "inputs": {
           "body": {
-            "rollback": "${{$trigger(rollback, {})}}",
-            "conditions": "${{$trigger(conditions, {})}}"
+            "rollback": "${{$trigger(rollback, {})}}"
           }
         }
       }

@@ -5,12 +5,12 @@ services:
       dockerfile: Dockerfile
     container_name: fleetsync-ota
     ports:
-      - "3000:80"
+      - "9080:9000"
     restart: unless-stopped
     environment:
       - NODE_ENV=production
     healthcheck:
-      test: [ "CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80" ]
+      test: [ "CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9080" ]
       interval: 30s
       timeout: 10s
       retries: 3

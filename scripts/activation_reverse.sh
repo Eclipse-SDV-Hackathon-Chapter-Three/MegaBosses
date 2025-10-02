@@ -7,8 +7,8 @@ TOKEN=$(curl -X POST -H "Content-Type: application/json" -d '{"username":"admin"
 curl -X POST \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  --data @./activations/campaign_activation.json \
-  http://localhost:8082/v1alpha2/activations/registry/update-activation
+  --data @./activations/campaign_activation_reverse.json \
+  http://localhost:8082/v1alpha2/activations/registry/update-activation-reverse
 
 curl -X GET \
   -H "Authorization: Bearer $TOKEN" \
