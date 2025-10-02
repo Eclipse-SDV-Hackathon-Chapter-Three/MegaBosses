@@ -83,4 +83,19 @@ chmod +x ./scripts/register-campaigns.sh
 ```
 
 #### Open the app to check cluster 
-With the ankaios agent running, we now can access a central console of a car in http://localhost:8085. In case a valid campaign is started and all the safety measures are guaranteed a pop-up message will appear on screen to allow the user to actively allow the updating process to start.
+With the ankaios agent running, we now can access a central console of a car in http://localhost:8086. In case a valid campaign is started and all the safety measures are guaranteed a pop-up message will appear on screen to allow the user to actively allow the updating process to start.
+
+#### Open the Management Platform
+After the cloud apps have been deployed, we now can access a Management Platform to trigger the updates on different cars - http://localhost:9080.
+
+#### Open the Simulated Instrument Cluster App
+This app is the one being updated after the trigger, you can open it so that after the trigger we will the app updated.
+
+### Fast deploy
+
+After installing all the dependecies run this for a faster setup:
+
+```bash
+./setup.sh
+```
+
