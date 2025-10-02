@@ -1,9 +1,9 @@
 from fastapi import FastAPI, HTTPException, Body
-from fastapi.responses import JSONResponse
 import json
 import os
 import requests
 from typing import Any, List
+import time
 
 app = FastAPI()
 
@@ -11,7 +11,33 @@ STATUS_FILE = os.path.join(os.path.dirname(__file__), "status.json")
 
 @app.post("/health-check")
 def health_check(body: dict = Body(..., description="Target to make a health check")):
-    return 200
+    max_retries = 5
+    sleep_seconds = 1
+    errors = []
+    for attempt in range(1, max_retries + 1):
+        try:
+            resp = requests.post(
+                "http://localhost:8000/health",
+                timeout=3
+            )
+            resp.raise_for_status()
+            return {"status": "ok", "attempt": attempt}
+        except Exception as e:
+            errors.append(f"attempt {attempt}: {e}")
+            if attempt < max_retries:
+                time.sleep(sleep_seconds)
+                # exponential backoff (1,2,4,8...)
+                sleep_seconds *= 2
+            else:
+                # All attempts failed
+                raise HTTPException(
+                    status_code=502,
+                    detail={
+                        "status": "unreachable",
+                        "attempts": max_retries,
+                        "errors": errors
+                    }
+                )
 
 def _deep_match(expected: Any, actual: Any, path: str = "") -> List[str]:
     errs = []
@@ -59,7 +85,6 @@ def update_possible(body: dict = Body(..., description="Subset of required statu
     )
 
     if popup_res.status_code == 200:
-        return 200
         return 200
     else:
         return popup_res
