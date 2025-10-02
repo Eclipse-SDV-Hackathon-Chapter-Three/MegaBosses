@@ -82,14 +82,21 @@ chmod +x ./scripts/register-campaigns.sh
 ./scripts/register-campaigns.sh
 ```
 
-#### Open the app to check cluster 
-With the ankaios agent running, we now can access a central console of a car in http://localhost:8086. In case a valid campaign is started and all the safety measures are guaranteed a pop-up message will appear on screen to allow the user to actively allow the updating process to start.
+#### Open the app to check cluster
+URL: http://localhost:8086
+Purpose: Simulates the vehicle’s central HMI where the driver receives an OTA update prompt and can Accept or Reject.
+Behavior: Shows a pop-up only when all safety / policy conditions (battery, vehicle state, etc.) are satisfied and a campaign activation has been triggered.
 
 #### Open the Management Platform
-After the cloud apps have been deployed, we now can access a Management Platform to trigger the updates on different cars - http://localhost:9080.
+URL: http://localhost:9080
+Purpose: Lets an operator view campaigns, evaluate policy eligibility, and trigger a software update activation.
+Action: On "Trigger Campaign" it authenticates with Symphony, registers an activation, and targets eligible vehicles.
+
 
 #### Open the Simulated Instrument Cluster App
-This app is the one being updated after the trigger, you can open it so that after the trigger we will the app updated.
+URL http://localhost:8000 
+Purpose: Workload that gets updated.
+Demonstration: After a successful activation + driver approval, the container / component redeploys to the new version.
 
 ### Fast deploy
 
