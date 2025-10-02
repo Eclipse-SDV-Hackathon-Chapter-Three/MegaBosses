@@ -44,11 +44,7 @@
         "config": {
           "name": "test",
           "url": "http://localhost:8085/health-check",
-          "method": "POST",
-          "successCodes": [
-            200,
-            202
-          ]
+          "method": "POST"
         },
         "inputs": {
           "body": {
@@ -63,11 +59,7 @@
         "config": {
           "name": "test",
           "url": "http://localhost:8085/rollback",
-          "method": "POST",
-          "successCodes": [
-            200,
-            202
-          ]
+          "method": "POST"
         },
         "inputs": {
           "body": {
