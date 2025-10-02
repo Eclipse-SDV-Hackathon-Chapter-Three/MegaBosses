@@ -96,13 +96,13 @@ export const campaignsData: Campaign[] = [
 	},
 	{
 		id: 'CAMP-2025-EM-001',
-		name: 'Engine Management Performance',
-		softwareComponent: 'Engine Management',
+		name: 'Instrument Cluster Application',
+		softwareComponent: 'Instrument Cluster',
 		version: 'v5.0.3',
 		status: 'Scheduled',
 		priority: 'Medium',
 		targetVehicles: 5,  // 4702, 4703, 4704, 4705, 4706 need update
-		completedVehicles: 1,  // 4701 completed (has v5.0.3)
+		completedVehicles: 0,  // 4701 completed (has v5.0.3)
 		packageSize: '52 MB',
 		deadline: '2025-11-30',
 		compliance: 'Euro 6',
