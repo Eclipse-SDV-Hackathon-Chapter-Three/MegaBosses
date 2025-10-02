@@ -205,7 +205,7 @@ function App() {
 	};
 
 	// Handle trigger campaign - updates all eligible vehicles for this campaign
-	const handleTriggerCampaign = (campaignId: string) => {
+	const handleTriggerCampaign = async (campaignId: string) => {
 		const campaign = campaigns.find(c => c.id === campaignId);
 		if (!campaign) {
 			alert('Campaign not found');
@@ -241,6 +241,140 @@ function App() {
 		);
 
 		if (!confirmed) return;
+
+		const SYMPHONY_API_BASE = 'http://localhost:8082/v1alpha2/'.replace(/\/+$/, '/') ;
+		const username = 'admin';		
+		const password = '';
+
+		const activationPayload = {
+            metadata: {
+                name: "update-activation"
+            },
+            spec: {
+                campaign: "update:v1",
+                stage: "",
+                inputs: {
+                    "app-to-update": campaign.softwareComponent.toLowerCase().replace(/\s+/g, '-'),
+                    conditions: {
+                        vehicle_state: {
+                            engine_status: "stopped",
+                            gear: "park",
+                            speed_kmh: 0
+                        },
+                        battery_status: {
+                            charging: true
+                        }
+                    },
+                    rollback: {
+                        metadata: { name: "ankaios-target" },
+                        spec: {
+                            forceRedeploy: true,
+                            components: [
+                                {
+                                    name: "instrument-cluster",
+                                    type: "ankaios",
+                                    properties: {
+                                        "ankaios.runtime": "podman",
+                                        "ankaios.agent": "agent_A",
+                                        "ankaios.restartPolicy": "ALWAYS",
+                                        "ankaios.runtimeConfig": "image: docker.io/ruipires99/instrument-cluster:v0.0.1\ncommandOptions: [\"-p\", \"8000:8000\"]"
+                                    }
+                                }
+                            ],
+                            topologies: [
+                                {
+                                    bindings: [
+                                        {
+                                            role: "ankaios",
+                                            provider: "providers.target.mqtt",
+                                            config: {
+                                                name: "proxy",
+                                                brokerAddress: "tcp://127.0.0.1:1883",
+                                                clientID: "symphony",
+                                                requestTopic: "coa-request",
+                                                responseTopic: "coa-response",
+                                                timeoutSeconds: "30"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    target: {
+                        metadata: { name: "ankaios-target" },
+                        spec: {
+                            forceRedeploy: true,
+                            components: [
+                                {
+                                    name: "instrument-cluster",
+                                    type: "ankaios",
+                                    properties: {
+                                        "ankaios.runtime": "podman",
+                                        "ankaios.agent": "agent_A",
+                                        "ankaios.restartPolicy": "ALWAYS",
+                                        "ankaios.runtimeConfig": "image: docker.io/ruipires99/instrument-cluster:v0.0.2\ncommandOptions: [\"-p\", \"8000:8000\"]"
+                                    }
+                                }
+                            ],
+                            topologies: [
+                                {
+                                    bindings: [
+                                        {
+                                            role: "ankaios",
+                                            provider: "providers.target.mqtt",
+                                            config: {
+                                                name: "proxy",
+                                                brokerAddress: "tcp://127.0.0.1:1883",
+                                                clientID: "symphony",
+                                                requestTopic: "coa-request",
+                                                responseTopic: "coa-response",
+                                                timeoutSeconds: "30"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                }
+            }
+        };
+
+		let token: string | null = null;
+		try {
+			const authRes = await fetch(`${SYMPHONY_API_BASE}users/auth`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ username, password })
+			});
+			if (!authRes.ok) {
+				const t = await authRes.text();
+				throw new Error(`Auth failed ${authRes.status}: ${t}`);
+			}
+			const authJson = await authRes.json();
+			token = authJson?.accessToken;
+			if (!token) {
+				throw new Error('No accessToken in auth response');
+			}
+
+			const actRes = await fetch(`${SYMPHONY_API_BASE}activations/registry/update-activation`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${token}`
+				},
+				body: JSON.stringify(activationPayload)
+			});
+			if (!actRes.ok) {
+				const t = await actRes.text();
+				throw new Error(`Activation POST failed ${actRes.status}: ${t}`);
+			}
+		} catch (e: any) {
+			console.error(e);
+			alert(`❌ Failed to trigger backend activation:\n${e.message || e}`);
+			return;
+		}
 
 		// Update all eligible vehicles
 		const vehicleIds = eligibleVehicles.map(v => v.id);
