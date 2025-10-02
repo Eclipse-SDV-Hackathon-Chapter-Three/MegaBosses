@@ -7,6 +7,8 @@ Modern vehicles aren’t just engines and wheels anymore — they’re powerful,
 , [Eclipse uProtocol](https://uprotocol.org/), and in-vehicle orchestrators such as [Eclipse Ankaios](https://eclipse-ankaios.github.io/ankaios/0.6/) and [Eclipse Muto](https://github.com/eclipse-muto).
 
 
+![Demo visualization](./Demo.gif)
+
 
 ## Installation
 
