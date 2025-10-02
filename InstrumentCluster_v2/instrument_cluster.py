@@ -5,7 +5,7 @@ app = FastAPI()
 
 @app.get("/health")
 def health_check():
-    return 400
+    return 200
 
 @app.get("/", response_class=HTMLResponse)
 def instrument_cluster():

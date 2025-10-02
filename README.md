@@ -47,6 +47,7 @@ To run the application start by Symphony, an MQTT broker, and a read-only Sympho
 
 ```bash
 docker compose -f /symphony/docker-compose.yaml up -d
+docker compose -f /ManagementPlatform/docker-compose.yaml up -d
 ```
 
 #### Starting the management platform app (Challenge 1)
